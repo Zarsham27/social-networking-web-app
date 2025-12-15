@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TripTalk – Travel Social Network</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+  <!-- jQuery (allowed) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+  <!-- ===== TOP BAR / NAVIGATION ===== -->
+  <header class="top-bar">
+    <div class="logo-area">
+      <h1 class="logo-text">TripTalk</h1>
+      <p class="logo-subtitle">Share your travel stories</p>
+    </div>
+
+    <nav class="main-nav">
+      <button class="nav-btn" data-section="auth-section">Account</button>
+      <button class="nav-btn requires-login" data-section="home-section">Home</button>
+      <button class="nav-btn requires-login" data-section="profile-section">Profile</button>
+      <button class="nav-btn requires-login" data-section="follow-section">Follow</button>
+      <button class="nav-btn requires-login" data-section="content-search-section">Search</button>
+      <button class="nav-btn requires-login" data-section="weather-section">Weather</button>
+      <button class="nav-btn requires-login" data-section="chat-section">AI Chat</button>
+      <button class="nav-btn requires-login" data-section="friends-section">Friends</button>
+    </nav>
+
+    <div id="current-user-panel">
+      <span id="current-user-text">Not logged in</span>
+      <button id="logout-button" type="button">Log out</button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT (single HTML page) ===== -->
+  <main class="page-wrapper">
+
+    <!-- ---------- ACCOUNT ---------- -->
+    <section id="auth-section" class="page-section active">
+      <h2 class="section-title">Account</h2>
+
+      <div class="two-column">
+        <!-- Register -->
+        <div class="card">
+          <h3>Create a new account</h3>
+          <form id="register-form" class="form-grid">
+            <label> Username <input type="text" id="register-username" required /> </label>
+            <label> Password <input type="password" id="register-password" required /> </label>
+            <label> Display name <input type="text" id="register-displayname" required /> </label>
+            <label> Email <input type="email" id="register-email" required /> </label>
+            <button type="submit" class="primary-btn">Register</button>
+          </form>
+        </div>
+
+        <!-- Login -->
+        <div class="card">
+          <h3>Log in</h3>
+          <form id="login-form" class="form-grid">
+            <label> Username <input type="text" id="login-username" required /> </label>
+            <label> Password <input type="password" id="login-password" required /> </label>
+            <button type="submit" class="primary-btn">Log in</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="auth-messages" class="messages"></div>
+    </section>
+
+    <!-- ---------- HOME (POST + FEED) ---------- -->
+    <section id="home-section" class="page-section">
+      <h2 class="section-title">Home</h2>
+
+      <!-- Post Form -->
+      <div class="card">
+        <h3>Post a new trip update</h3>
+        <form id="post-form" class="form-grid">
+          <label> Text <textarea id="post-text" rows="3" required></textarea> </label>
+          <label> Photo <input type="file" id="post-image" accept="image/*" /> </label>
+          <button type="submit" class="primary-btn">Post</button>
+        </form>
+        <div id="post-messages" class="messages"></div>
+      </div>
+
+      <!-- Feed -->
+      <div class="card">
+        <div class="card-header-row">
+          <h3>Your feed</h3>
+          <button id="refresh-feed-button" class="secondary-btn">Refresh feed</button>
+        </div>
+        <div id="feed-contents" class="post-list"></div>
+        <div id="feed-messages" class="messages"></div>
+      </div>
+    </section>
+
+    <!-- ---------- PROFILE ---------- -->
+    <section id="profile-section" class="page-section">
+      <h2 class="section-title">Profile</h2>
+
+      <div class="card profile-card">
+        <div class="profile-main">
+          <div class="profile-avatar" id="profile-avatar"></div>
+
+          <div>
+            <p><strong>Username:</strong> <span id="profile-username">–</span></p>
+            <p><strong>Display name:</strong> <span id="profile-displayname">–</span></p>
+            <p><strong>Email:</strong> <span id="profile-email">–</span></p>
+            <p><strong>Bio:</strong> <span id="profile-bio">–</span></p>
+            <p><strong>Location:</strong> <span id="profile-location">–</span></p>
+          </div>
+        </div>
+
+        <!-- Edit Profile -->
+        <h3>Edit Profile</h3>
+        <form id="profile-edit-form" class="form-grid">
+          <label>Display Name <input type="text" id="edit-displayname" /></label>
+          <label>Email <input type="email" id="edit-email" /></label>
+          <label>Bio <textarea id="edit-bio" rows="2"></textarea></label>
+          <label>Location <input type="text" id="edit-location" /></label>
+          <button class="primary-btn" type="submit">Save Changes</button>
+        </form>
+
+        <!-- Profile picture upload -->
+        <form id="profile-picture-form" class="form-grid profile-upload-form">
+          <label>Change profile picture
+            <input type="file" id="profile-picture-input" accept="image/*" />
+          </label>
+          <button type="submit" class="secondary-btn">Upload</button>
+        </form>
+
+        <div id="profile-messages" class="messages"></div>
+      </div>
+    </section>
+
+    <!-- ---------- FOLLOW USERS ---------- -->
+    <section id="follow-section" class="page-section">
+      <h2 class="section-title">Find and follow travellers</h2>
+
+      <div class="card">
+        <form id="user-search-form" class="form-inline">
+          <label> Search users
+            <input type="text" id="user-search-term" placeholder="Type a username..." />
+          </label>
+          <button type="submit" class="secondary-btn">Search</button>
+        </form>
+
+        <ul id="user-search-results" class="user-list"></ul>
+        <div id="follow-messages" class="messages"></div>
+      </div>
+    </section>
+
+    <!-- ---------- SEARCH POSTS ---------- -->
+    <section id="content-search-section" class="page-section">
+      <h2 class="section-title">Search posts</h2>
+
+      <div class="card">
+        <form id="content-search-form" class="form-inline">
+          <label>Search term
+            <input type="text" id="content-search-term" placeholder="e.g. Paris, hiking..." />
+          </label>
+          <button type="submit" class="secondary-btn">Search</button>
+        </form>
+
+        <div id="content-search-results" class="post-list"></div>
+        <div id="content-search-messages" class="messages"></div>
+      </div>
+    </section>
+
+    <!-- ---------- WEATHER (third-party) ---------- -->
+    <section id="weather-section" class="page-section">
+      <h2 class="section-title">Weather</h2>
+
+      <div class="card">
+        <form id="weather-form" class="form-inline">
+          <label>City <input type="text" id="weather-city" placeholder="London, Tokyo..." /></label>
+          <button type="submit" class="secondary-btn">Get Weather</button>
+        </form>
+
+        <div id="weather-result" class="weather-box"></div>
+      </div>
+    </section>
+
+    <!-- ---------- AI CHATBOT ---------- -->
+    <section id="chat-section" class="page-section">
+      <h2 class="section-title">Ask TripTalk AI</h2>
+
+      <div class="card">
+        <form id="chat-form" class="form-grid">
+          <label>Your message
+            <textarea id="chat-input" rows="3"></textarea>
+          </label>
+          <button class="primary-btn" type="submit">Send</button>
+        </form>
+
+        <div id="chat-response" class="chat-box"></div>
+      </div>
+    </section>
+
+    <!-- ---------- FRIEND REQUESTS ---------- -->
+    <section id="friends-section" class="page-section">
+      <h2 class="section-title">Friend Requests</h2>
+
+      <div class="card">
+        <h3>Send a Friend Request</h3>
+        <form id="friend-request-form" class="form-inline">
+          <label>Username <input type="text" id="friend-request-username" /></label>
+          <button class="secondary-btn" type="submit">Send Request</button>
+        </form>
+
+        <h3>Incoming Friend Requests</h3>
+        <ul id="incoming-friend-requests" class="user-list"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <p>TripTalk – Coursework 2 by M00733239</p>
+  </footer>
+
+  <!-- Front-end JS -->
+  <script src="js/frontend.js"></script>
+</body>
+</html>

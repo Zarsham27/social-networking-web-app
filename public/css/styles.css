@@ -1,0 +1,357 @@
+/* ========================================================================
+   GLOBAL RESET
+   Clean, modern foundation for the TripTalk UI
+   ======================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* Soft sunrise mint gradient (premium look) */
+  background: linear-gradient(135deg, #d9f7ec, #b0e8d5, #8edfcc);
+  background-attachment: fixed;
+
+  color: #0f4234;
+}
+
+/* ========================================================================
+   TOP NAVIGATION BAR
+   Soft glassy navbar with mint highlight
+   ======================================================================== */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.9rem 2rem;
+
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Modern pastel gradient title */
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  background-clip: text;                 /* Standard syntax */
+  -webkit-background-clip: text;         /* Chrome / Safari */
+  -webkit-text-fill-color: transparent;  /* Required for text gradient */
+  color: transparent;                    /* Fallback */
+}
+
+
+.logo-subtitle {
+  font-size: 0.82rem;
+  opacity: 0.75;
+  color: #0f4234;
+}
+
+/* Navigation buttons */
+.main-nav {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.nav-btn {
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: white;
+  font-size: 0.9rem;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(26, 188, 156, 0.4);
+}
+
+.nav-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Logout button */
+#current-user-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+#logout-button {
+  padding: 0.35rem 0.8rem;
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.55);
+  color: #0f4234;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#logout-button:hover {
+  background: rgba(255, 255, 255, 0.75);
+  transform: scale(1.05);
+}
+
+/* ========================================================================
+   MAIN SECTIONS
+   ======================================================================== */
+.page-wrapper {
+  flex: 1;
+  padding: 2rem;
+}
+
+.page-section {
+  display: none;
+}
+
+.page-section.active {
+  display: block;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #0f4234;
+}
+
+/* ========================================================================
+   CARD / PANEL STYLES
+   ======================================================================== */
+.card {
+  background: rgba(162, 214, 136, 0.35);   /* slightly darker for contrast */
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+
+  padding: 1.3rem 1.4rem;
+  margin-bottom: 1.4rem;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Grids */
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* ========================================================================
+   INPUT FIELDS
+   ======================================================================== */
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.92rem;
+}
+
+input,
+textarea {
+  border: none;
+  padding: 0.65rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+
+  background: #a7c1a4;
+  color: #0f4234;
+
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #1abc9c;
+  box-shadow: 0 0 6px rgba(26, 188, 156, 0.3);
+}
+
+/* ========================================================================
+   BUTTON STYLES
+   ======================================================================== */
+.primary-btn,
+.secondary-btn {
+  padding: 0.55rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Main mint button */
+.primary-btn {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: rgb(245, 245, 245);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(26, 188, 156, 0.5);
+}
+
+/* Subtle frosted button */
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.35);
+  color: #0f4234;
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(1.05);
+}
+
+/* ========================================================================
+   STATUS MESSAGES
+   ======================================================================== */
+.messages {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  min-height: 1.2rem;
+}
+
+.messages.error {
+  color: #e74c3c;
+}
+
+.messages.success {
+  color: #27ae60;
+}
+
+/* ========================================================================
+   POSTS
+   ======================================================================== */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 1rem 1.2rem;
+
+  border-radius: 14px;
+  border-left: 5px solid #1abc9c;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #0f4234;
+}
+
+.post-meta {
+  font-size: 0.78rem;
+  opacity: 0.7;
+  margin-bottom: 0.4rem;
+}
+
+.post img {
+  width: 100%;
+  margin-top: 0.45rem;
+  border-radius: 10px;
+}
+
+/* ========================================================================
+   USER LIST (FOLLOW USERS)
+   ======================================================================== */
+.user-list li {
+  background: rgba(255, 255, 255, 0.55);
+  padding: 0.6rem 0.9rem;
+
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: background 0.2s ease;
+  color: #0f4234;
+}
+
+.user-list li:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* ========================================================================
+   PROFILE
+   ======================================================================== */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.profile-main {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #16a085, #1abc9c);
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* ========================================================================
+   FOOTER
+   ======================================================================== */
+.page-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  color: #0f4234;
+}
